@@ -16,9 +16,11 @@ const (
 )
 
 type Message struct {
-	Sender   *Client
+	Sender *Client
+	// room name
 	Receiver string
-	Command  int
-	Content  interface{}
-	Time     time.Time
+	// command
+	Command int
+	Content interface{}
+	Time    time.Time
 }

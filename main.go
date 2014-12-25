@@ -2,10 +2,17 @@
 package main
 
 import (
-	"chat"
+	"runtime"
+	"sync"
+
+	"chatroom/chat"
 )
 
+func init() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+}
+
 func main() {
-	server := &chat.ChatServer{":12345", make(map[string]*chat.Room)}
+	server := chat.NewChatServer("127.0.0.1:12345", make(map[string]*chat.Room), new(sync.RWMutex))
 	server.ListenAndServe()
 }
